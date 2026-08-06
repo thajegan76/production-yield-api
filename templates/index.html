@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Production Yield Prediction</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            background:#f5f7fa;
+        }
+
+        .card{
+            margin-top:40px;
+            border-radius:15px;
+            box-shadow:0px 5px 20px rgba(0,0,0,.15);
+        }
+
+        .card-header{
+            background:#0d6efd;
+            color:white;
+            text-align:center;
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .prediction{
+            font-size:30px;
+            font-weight:bold;
+            color:green;
+            text-align:center;
+            margin-top:20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="card-header">
+Production Yield Prediction
+</div>
+
+<div class="card-body">
+
+<form action="/predict" method="post">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+<label>Solder Temperature (°C)</label>
+<input type="number" step="0.01" class="form-control"
+name="Solder_Temperature" value="246" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Conveyor Speed</label>
+<input type="number" step="0.01" class="form-control"
+name="Conveyor_Speed" value="1.18" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Humidity (%)</label>
+<input type="number" step="0.01" class="form-control"
+name="Humidity" value="42" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Machine Age (Years)</label>
+<input type="number"
+class="form-control"
+name="Machine_Age"
+value="5"
+required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Operator Experience</label>
+<input type="number"
+class="form-control"
+name="Operator_Experience"
+value="12"
+required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Material Quality</label>
+<input type="number"
+step="0.01"
+class="form-control"
+name="Material_Quality"
+value="91"
+required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Component Density</label>
+<input type="number"
+class="form-control"
+name="Component_Density"
+value="320"
+required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Inspection Time</label>
+<input type="number"
+step="0.01"
+class="form-control"
+name="Inspection_Time"
+value="13"
+required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Rework Count</label>
+<input type="number"
+class="form-control"
+name="Rework_Count"
+value="1"
+required>
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Shift</label>
+
+<select class="form-select" name="Shift">
+
+<option value="0" selected>Day</option>
+
+<option value="1">Night</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="d-grid">
+
+<button class="btn btn-primary btn-lg">
+
+Predict Production Yield
+
+</button>
+
+</div>
+
+</form>
+
+{% if prediction %}
+
+<div class="alert alert-success mt-4 text-center">
+
+<h3>Predicted Production Yield</h3>
+
+<h1>{{ prediction }} %</h1>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
